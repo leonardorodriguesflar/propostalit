@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discovery Financeiro | LIT Digital Transformation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cor-primaria: #0055A4;
+      --cor-secundaria: #37BEF3;
+      --cor-destaque: #8E57B1;
+      --cor-texto: #333;
+      --cor-fundo: #fafafa;
+      --cor-branco: #fff;
+      --cor-cinza: #f0f0f0;
+      --cor-sombra: #0001;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', 'Montserrat', Arial, sans-serif;
+      background: var(--cor-fundo);
+      color: var(--cor-texto);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+    .hero {
+      background: linear-gradient(120deg, var(--cor-primaria) 60%, var(--cor-destaque) 100%);
+      padding: 64px 0 48px 0;
+      text-align: center;
+      border-bottom-left-radius: 48px;
+      border-bottom-right-radius: 48px;
+      box-shadow: 0 8px 48px #0055A422;
+      position: relative;
+    }
+    .hero-logo {
+      height: 110px;
+      max-width: 380px;
+      margin-bottom: 18px;
+      border-radius: 22px;
+      box-shadow: 0 4px 32px #8E57B144;
+      background: #fff;
+      object-fit: contain;
+      padding: 10px 28px;
+      border: 2px solid var(--cor-secundaria);
+    }
+    .hero-title {
+      color: var(--cor-branco);
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin: 0 0 12px 0;
+      letter-spacing: 0.8px;
+      text-shadow: 0 2px 16px #0055A488;
+    }
+    .hero-desc {
+      color: var(--cor-secundaria);
+      font-size: 1.25rem;
+      font-weight: 400;
+      margin-bottom: 0;
+      text-shadow: 0 1px 4px #0055A422;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      background: #fff;
+      border-bottom: 2px solid var(--cor-secundaria);
+      box-shadow: 0 2px 8px var(--cor-sombra);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .nav-btn {
+      background: none;
+      border: none;
+      outline: none;
+      padding: 28px 48px 20px 48px;
+      font-size: 1.15rem;
+      color: var(--cor-primaria);
+      cursor: pointer;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      transition: color 0.2s, border-bottom 0.2s, background 0.2s;
+      border-bottom: 4px solid transparent;
+      border-radius: 0;
+      letter-spacing: 0.2px;
+      margin: 0;
+      min-width: 150px;
+      text-align: center;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #fff 80%, #f6f3fa 100%);
+    }
+    .nav-btn.active {
+      color: var(--cor-destaque);
+      border-bottom: 4px solid var(--cor-destaque);
+      background: linear-gradient(90deg, #f6f3fa 80%, #e9e3f3 100%);
+      box-shadow: 0 2px 12px #8E57B122;
+    }
+    .nav-btn:hover:not(.active) {
+      background: var(--cor-cinza);
+      color: var(--cor-secundaria);
+    }
+    .section {
+      margin-bottom: 32px;
+      padding: 24px 24px 16px 24px;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px #0055A410;
+      scroll-margin-top: 40px;
+    }
+    .section.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(32px); }
+      to { opacity: 1; transform: none; }
+    }
+    .section-title {
+      color: var(--cor-primaria);
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      margin-bottom: 36px;
+      border-left: 12px solid var(--cor-destaque);
+      padding-left: 28px;
+      background: linear-gradient(90deg, #fafafa 80%, #f6f3fa 100%);
+      border-radius: 10px;
+      box-shadow: 0 2px 12px #8E57B122;
+    }
+    .card-list, .benefits-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 !important;
+      margin-bottom: 0 !important;
+      justify-content: flex-start;
+    }
+    .card, .benefit-card {
+      margin: 0 !important;
+      border-right: 1px solid #e1e8ff;
+      border-bottom: 1px solid #e1e8ff;
+    }
+    .card-list .card:last-child, .benefits-grid .benefit-card:last-child {
+      border-right: none;
+    }
+    .card {
+      background: linear-gradient(120deg, #fff 80%, #f6f3fa 100%);
+      border-radius: 22px;
+      box-shadow: 0 4px 24px #8E57B122;
+      padding: 38px 32px 32px 32px;
+      flex: 1 1 320px;
+      min-width: 280px;
+      max-width: 370px;
+      transition: box-shadow 0.2s, transform 0.2s;
+      font-size: 1.13rem;
+      font-family: 'Inter', Arial, sans-serif;
+      font-weight: 500;
+      color: var(--cor-texto);
+      border: 2px solid #f0f0f0;
+      margin-bottom: 0;
+    }
+    .card:hover {
+      box-shadow: 0 8px 48px #37BEF344;
+      transform: translateY(-6px) scale(1.03);
+      border-color: var(--cor-secundaria);
+    }
+    .card-title {
+      color: var(--cor-primaria);
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 18px;
+      letter-spacing: 0.1px;
+    }
+    .fluxo-label {
+      font-size: 18px;
+      font-weight: 600;
+      color: #0055A4;
+      margin: 24px 0 16px 0;
+      text-align: center;
+    }
+    .mermaid {
+      background: #f6f6ff;
+      border-radius: 22px;
+      padding: 40px 12px 32px 12px;
+      margin: 32px 0 48px 0;
+      box-shadow: 0 8px 32px #8E57B122;
+      overflow-x: auto;
+      border: 3px solid var(--cor-secundaria);
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mermaid:hover {
+      box-shadow: 0 12px 48px #37BEF344;
+      border-color: var(--cor-destaque);
+    }
+    .saving-box, .box-destaque {
+      background: linear-gradient(90deg, var(--cor-destaque) 80%, var(--cor-secundaria) 100%);
+      color: #fff;
+      border-radius: 18px;
+      padding: 32px 38px;
+      margin: 32px 0 40px 0;
+      font-size: 1.22rem;
+      box-shadow: 0 4px 24px #8E57B133;
+      font-weight: 500;
+      letter-spacing: 0.1px;
+    }
+    .preco-box {
+      background: var(--cor-secundaria);
+      color: #fff;
+      border-radius: 18px;
+      padding: 38px 44px 28px 44px;
+      margin: 48px 0 28px 0;
+      font-size: 1.45rem;
+      box-shadow: 0 2px 24px #37BEF344;
+      text-align: center;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+    }
+    .preco-destaque {
+      color: var(--cor-destaque);
+      font-size: 2.4rem;
+      font-weight: 900;
+      margin: 0 8px;
+    }
+    .condicoes {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #0001;
+      padding: 28px 32px;
+      margin: 0 0 36px 0;
+      font-size: 1.18rem;
+      color: var(--cor-primaria);
+    }
+    .footer {
+      text-align: center;
+      color: #888;
+      font-size: 1.08rem;
+      padding: 28px 0 18px 0;
+      background: #fff;
+      border-top: 1px solid #e0e0e0;
+      margin-top: 0;
+      letter-spacing: 0.1px;
+    }
+    @media (max-width: 1200px) {
+      .section {
+        padding: 24px 2vw 24px 2vw;
+      }
+      .nav {
+        flex-wrap: wrap;
+      }
+      .nav-btn {
+        padding: 14px 10px 12px 10px;
+        font-size: 1.05rem;
+        min-width: 100px;
+      }
+      .hero-logo { height: 60px; }
+      .hero-title { font-size: 1.5rem; }
+    }
+    @media (max-width: 800px) {
+      .section {
+        padding: 10px 1vw 10px 1vw;
+      }
+      .hero-title { font-size: 1.2rem; }
+      .preco-box { font-size: 1.05rem; padding: 18px 8px 12px 8px; }
+      .preco-destaque { font-size: 1.3rem; }
+    }
+    @media (max-width: 600px) {
+      .card-list { flex-direction: column; gap: 18px; }
+      .section { padding: 4vw 2vw; }
+    }
+    @media (max-width: 900px) {
+      .card-list, .benefits-grid {
+        flex-direction: column;
+      }
+      .card, .benefit-card {
+        border-right: none;
+        border-bottom: 1px solid #e1e8ff;
+      }
+    }
+    .flow-container {
+      background: linear-gradient(135deg, #fafafa 0%, #f0f8ff 100%);
+      border-radius: 24px;
+      padding: 32px;
+      margin: 24px 0;
+      box-shadow: 0 8px 32px rgba(0, 85, 164, 0.08);
+      border: 1px solid rgba(142, 87, 177, 0.1);
+    }
+    .flow-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0055A4;
+      text-align: center;
+      margin-bottom: 32px;
+      letter-spacing: 0.5px;
+    }
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .flow-step {
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+      border: 2px solid #e1e8ff;
+      border-radius: 16px;
+      padding: 20px;
+      min-width: 140px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0, 85, 164, 0.06);
+      transition: all 0.3s ease;
+    }
+    .flow-step:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 85, 164, 0.12);
+    }
+    .flow-step.automated {
+      background: linear-gradient(135deg, #37BEF3 0%, #8E57B1 100%);
+      border-color: #0055A4;
+      color: white;
+    }
+    .flow-step.automated .step-content h4,
+    .flow-step.automated .step-content p {
+      color: white;
+    }
+    .step-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+    .step-content h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 4px 0;
+      color: #0055A4;
+    }
+    .step-content p {
+      font-size: 12px;
+      margin: 0;
+      color: #666;
+      opacity: 0.8;
+    }
+    .flow-arrow {
+      font-size: 24px;
+      color: #8E57B1;
+      font-weight: bold;
+      margin: 0 8px;
+    }
+    .metrics-dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+    .metric-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+      border: 2px solid #e1e8ff;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(0, 85, 164, 0.06);
+      transition: all 0.3s ease;
+    }
+    .metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 85, 164, 0.12);
+    }
+    .metric-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+    .metric-content h3 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #0055A4;
+      margin: 0 0 8px 0;
+    }
+    .metric-content p {
+      font-size: 14px;
+      color: #666;
+      margin: 0;
+      font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .flow-diagram {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .flow-arrow {
+        transform: rotate(90deg);
+        margin: 8px 0;
+      }
+      .metrics-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .flow-step {
+        min-width: 120px;
+        padding: 16px;
+      }
+    }
+    .container {
+      display: flex;
+      min-height: 100vh;
+      background: #f7f8fa;
+    }
+    .sidebar {
+      width: 220px;
+      background: linear-gradient(135deg, #0055A4 0%, #8E57B1 100%);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 32px 0 24px 0;
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
+      box-shadow: 2px 0 16px #8E57B122;
+      z-index: 10;
+    }
+    .logo-container {
+      margin-bottom: 32px;
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #0002;
+    }
+    .nav-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+    .nav-link {
+      display: block;
+      padding: 10px 24px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 8px 0 0 8px;
+      margin-bottom: 6px;
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.2px;
+    }
+    .nav-link:hover, .nav-link:focus {
+      background: #37BEF3;
+      color: #0055A4;
+    }
+    .main-content {
+      flex: 1;
+      padding: 32px 40px 32px 40px;
+      max-width: 100vw;
+    }
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+      .sidebar {
+        flex-direction: row;
+        width: 100vw;
+        min-height: unset;
+        height: 80px;
+        padding: 0 8px;
+        position: static;
+        box-shadow: 0 2px 12px #8E57B122;
+      }
+      .logo-container {
+        margin-bottom: 0;
+        margin-right: 16px;
+        width: 60px;
+        height: 60px;
+      }
+      .nav-menu {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: auto;
+      }
+      .nav-link {
+        font-size: 13px;
+        padding: 8px 12px;
+        margin-bottom: 0;
+        border-radius: 8px;
+      }
+      .main-content {
+        padding: 16px 4vw 16px 4vw;
+      }
+      .section {
+        padding: 16px 8px 8px 8px;
+        scroll-margin-top: 90px;
+      }
+    }
+    .cronograma-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto 12px auto;
+      font-size: 1rem;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px #0055A410;
+    }
+    .cronograma-table th, .cronograma-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e0e0e0;
+      text-align: left;
+    }
+    .cronograma-table th {
+      background: #f6f3fa;
+      color: #0055A4;
+      font-weight: 700;
+    }
+    .cronograma-table tr:last-child td {
+      border-bottom: none;
+    }
+    .benefit-card.premium {
+      background: linear-gradient(120deg, #fff 80%, #f6f3fa 100%);
+      border: 2px solid #e1e8ff;
+      border-radius: 18px;
+      box-shadow: 0 4px 16px #8E57B122;
+      padding: 28px 18px 22px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 180px;
+      max-width: 240px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .benefit-badge {
+      background: #37BEF3;
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 800;
+      border-radius: 12px;
+      padding: 4px 18px;
+      margin: 8px 0 10px 0;
+      box-shadow: 0 2px 8px #0055A422;
+    }
+    .benefit-card.premium h4 {
+      color: #0055A4;
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+    }
+    .benefit-card.premium p {
+      color: #333;
+      font-size: 0.98rem;
+      margin: 0;
+      text-align: center;
+    }
+    @media print {
+      body::before {
+        content: '';
+        display: block;
+        height: 120px;
+      }
+      .print-header {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 110px;
+        background: #fff;
+        z-index: 1000;
+        border-bottom: 2px solid #8E57B1;
+        padding: 0;
+      }
+      .print-header-logo {
+        height: 80px;
+        margin-right: 32px;
+      }
+      .print-header-title {
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: 2.1rem;
+        font-weight: 800;
+        color: #0055A4;
+        letter-spacing: 0.5px;
+        text-align: left;
+      }
+      .section {
+        margin-top: 0 !important;
+      }
+      .card-list, .benefits-grid {
+        gap: 0 !important;
+        margin-bottom: 0 !important;
+        flex-wrap: wrap !important;
+        page-break-inside: avoid;
+        justify-content: flex-start !important;
+      }
+      .card, .benefit-card {
+        margin: 0 !important;
+        border-right: 1px solid #e1e8ff !important;
+        border-bottom: 1px solid #e1e8ff !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        page-break-inside: avoid;
+        background: #fff !important;
+        min-width: 220px !important;
+        max-width: 320px !important;
+        flex: 1 1 220px !important;
+      }
+      .card-list .card:last-child, .benefits-grid .benefit-card:last-child {
+        border-right: none !important;
+      }
+      .section-title {
+        text-align: left !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+    }
+    .print-header {
+      display: none;
+    }
+  </style>
+  <script src="mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Navegação
+      const navBtns = document.querySelectorAll('.nav-btn');
+      const sections = document.querySelectorAll('.section');
+      navBtns.forEach((btn, idx) => {
+        btn.addEventListener('click', function() {
+          navBtns.forEach(b => b.classList.remove('active'));
+          sections.forEach(tc => tc.classList.remove('active'));
+          btn.classList.add('active');
+          sections[idx].classList.add('active');
+          if(sections[idx].querySelector('.mermaid')) {
+            if(window.mermaid) mermaid.run();
+          }
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+      });
+      navBtns[0].classList.add('active');
+      sections[0].classList.add('active');
+      if(window.mermaid) mermaid.initialize({ startOnLoad: true, theme: 'default' });
+    });
+  </script>
+</head>
+<body>
+  <div class="print-header">
+    <img src="Lit - Banners_Prancheta 1 (1).jpg" alt="Logo LIT" class="print-header-logo">
+    <div class="print-header-title">Proposta Discovery Financeiro</div>
+  </div>
+  <div class="container">
+    <!-- Menu Lateral -->
+    <nav class="sidebar">
+      <div class="logo-container">
+        <img src="Lit - Banners_Prancheta 1 (1).jpg" alt="LIT Logo" class="logo">
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#executivo" class="nav-link">Executivo</a></li>
+        <li><a href="#contexto" class="nav-link">Contexto</a></li>
+        <li><a href="#metodologia" class="nav-link">Metodologia</a></li>
+        <li><a href="#fluxos" class="nav-link">Fluxos</a></li>
+        <li><a href="#beneficios" class="nav-link">Benefícios</a></li>
+        <li><a href="#cronograma" class="nav-link">Cronograma</a></li>
+        <li><a href="#investimento" class="nav-link">Investimento</a></li>
+      </ul>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+      <!-- Contexto -->
+      <section id="contexto" class="section">
+        <div class="section-title">Contexto</div>
+        <div class="card-list">
+          <div class="card">
+            <div class="card-title">Desafio Atual</div>
+            Processos financeiros manuais, alto tempo de processamento, risco de erros e baixa rastreabilidade.
+          </div>
+          <div class="card">
+            <div class="card-title">Objetivo do Discovery</div>
+            Mapear, analisar e propor automações para transformar o processo financeiro, reduzindo custos e aumentando eficiência.
+          </div>
+        </div>
+      </section>
+
+      <!-- Processo de Discovery -->
+      <section id="metodologia" class="section">
+        <div class="section-title">Processo de Discovery</div>
+        <div class="methodology-steps">
+          <div class="step"><h4>Imersão</h4><p>Entendimento do processo atual, entrevistas e coleta de dados.</p></div>
+          <div class="step"><h4>Mapeamento AS-IS</h4><p>Desenho do fluxo atual detalhado.</p></div>
+          <div class="step"><h4>Identificação de GAPs</h4><p>Levantamento de oportunidades de automação e melhorias.</p></div>
+          <div class="step"><h4>Modelagem TO-BE</h4><p>Proposta de fluxo futuro automatizado.</p></div>
+          <div class="step"><h4>Backlog e Roadmap</h4><p>Priorização de entregáveis e plano de implementação.</p></div>
+        </div>
+      </section>
+
+      <!-- Cronograma -->
+      <section id="cronograma" class="section">
+        <div class="section-title">Cronograma</div>
+        <div style="overflow-x:auto;">
+          <table class="cronograma-table">
+            <thead>
+              <tr>
+                <th>Semana</th>
+                <th>Atividade</th>
+                <th>Entregável</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Imersão, entrevistas e coleta de dados</td>
+                <td>Documento de contexto</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Mapeamento do processo AS-IS</td>
+                <td>Fluxo AS-IS detalhado</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Identificação de GAPs e modelagem TO-BE</td>
+                <td>Fluxo TO-BE e lista de oportunidades</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Backlog, KPIs e apresentação executiva</td>
+                <td>Backlog priorizado, KPIs e roadmap</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Exemplo de Benefícios -->
+      <section id="beneficios" class="section">
+        <div class="section-title">Exemplo de Benefícios</div>
+        <div class="benefits-grid">
+          <div class="benefit-card premium">
+            <div class="benefit-icon">⚡</div>
+            <div class="benefit-badge">80%</div>
+            <h4>Eficiência Operacional</h4>
+            <p>Redução de 80% no tempo de processamento das NFs.</p>
+          </div>
+          <div class="benefit-card premium">
+            <div class="benefit-icon">💰</div>
+            <div class="benefit-badge">R$ 240K</div>
+            <h4>Saving Anual</h4>
+            <p>Economia estimada de R$ 240.000,00 ao ano.</p>
+          </div>
+          <div class="benefit-card premium">
+            <div class="benefit-icon">🎯</div>
+            <div class="benefit-badge">95%</div>
+            <h4>Precisão e Qualidade</h4>
+            <p>Eliminação de erros manuais e retrabalho.</p>
+          </div>
+          <div class="benefit-card premium">
+            <div class="benefit-icon">📊</div>
+            <div class="benefit-badge">100%</div>
+            <h4>Rastreabilidade</h4>
+            <p>Controle total e visibilidade do processo.</p>
+          </div>
+        </div>
+      </section>
+
+    
+
+      <!-- Entregáveis e Esforço -->
+      <section id="entregaveis" class="section">
+        <div class="section-title">Entregáveis e Esforço</div>
+        <div class="card-list">
+          <div class="card"><div class="card-title">Documento de Contexto</div>Mapeamento dos envolvidos e contexto do projeto.</div>
+          <div class="card"><div class="card-title">Fluxos AS-IS e TO-BE</div>Diagramas detalhados do processo atual e futuro.</div>
+          <div class="card"><div class="card-title">Identificação de Oportunidades</div>Lista priorizada de automações e melhorias.</div>
+          <div class="card"><div class="card-title">Critérios de Sucesso e KPIs</div>Definição de indicadores e critérios de sucesso.</div>
+          <div class="card"><div class="card-title">Backlog de Melhorias</div>Lista priorizada de automações e melhorias.</div>
+          <div class="card"><div class="card-title">Roadmap Visual</div>Plano visual para implementação.</div>
+        </div>
+        <div class="box-destaque" style="margin-top:24px;">
+          <b>Esforço Estimado:</b> 4 semanas (1 mês) de trabalho consultivo, incluindo entrevistas, modelagem, validação e apresentação executiva.
+        </div>
+      </section>
+
+      <!-- Exemplo de Backlog/Modelos -->
+      <section id="modelos" class="section">
+        <div class="section-title">Exemplo de Backlog e Modelos</div>
+        <div class="card-list">
+          <div class="card"><div class="card-title">Exemplo de Backlog</div>1. Levantamento de stakeholders<br>2. Modelagem AS-IS<br>3. Modelagem TO-BE<br>4. Identificação de GAPs<br>5. Definição de critérios de sucesso<br>6. Detalhamento do backlog de automações</div>
+          <div class="card"><div class="card-title">Modelo de Critérios de Sucesso</div>Redução de 80% no tempo por NF, erros para menos de 5%, automação de 90% das etapas.</div>
+          <div class="card"><div class="card-title">Modelo de Documento</div>Relatório executivo com contexto, fluxos, oportunidades, KPIs e roadmap.</div>
+        </div>
+      </section>
+
+      <!-- Fluxos AS-IS e TO-BE -->
+      <section id="fluxos" class="section">
+        <div class="section-title">Fluxos AS-IS e TO-BE</div>
+        <div class="flow-container">
+          <div class="flow-title">Fluxo Atual (AS-IS)</div>
+          <div class="flow-diagram">
+            <div class="flow-step"><div class="step-icon">📄</div><div class="step-content"><h4>Entrada de NF</h4><p>Recebimento manual</p></div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="step-icon">👁️</div><div class="step-content"><h4>Validação Manual</h4><p>15 min por NF</p></div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="step-icon">💻</div><div class="step-content"><h4>ERP</h4><p>Lançamento manual</p></div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="step-icon">✅</div><div class="step-content"><h4>Aprovação Manual</h4><p>Gestor financeiro</p></div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="step-icon">💰</div><div class="step-content"><h4>Pagamento</h4><p>Processo manual</p></div></div>
+          </div>
+        </div>
+        <div class="flow-container">
+          <div class="flow-title">Fluxo Proposto (TO-BE)</div>
+          <div class="flow-diagram">
+            <div class="flow-step automated"><div class="step-icon">📄</div><div class="step-content"><h4>Entrada de NF</h4><p>Digital automática</p></div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step automated"><div class="step-icon">🤖</div><div class="step-content"><h4>Validação IA</h4><p>3 min por NF</p></div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step automated"><div class="step-icon">⚡</div><div class="step-content"><h4>ERP Automático</h4><p>Integração direta</p></div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="step-icon">⚡</div><div class="step-content"><h4>Aprovação Exceção</h4><p>Apenas casos especiais</p></div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step automated"><div class="step-icon">💰</div><div class="step-content"><h4>Pagamento Auto</h4><p>Processo automático</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cálculo de Saving -->
+      <section id="saving" class="section">
+        <div class="section-title">Cálculo de Saving</div>
+        <div class="saving-box">
+          <b>Exemplo de Cálculo de Saving:</b><br>
+          Volume atual: 1.000 NFs / mês<br>
+          Tempo atual por NF: 15 minutos (manual)<br>
+          Tempo após automação: 3 minutos (com IA)<br>
+          Saving por NF: 12 minutos<br>
+          Saving total por mês: 12 minutos x 1.000 = 12.000 minutos = 200h<br>
+          Saving total por ano: 200h x 12 = 2.400h<br>
+          Saving estimado para a empresa: R$100/h x 2.400h = <b>R$ 240.000/ano</b>
+        </div>
+      </section>
+
+      <section id="investimento" class="section">
+        <div class="section-title">Investimento e Condições</div>
+        <div class="preco-box">
+          Investimento para Discovery Financeiro LIT:<br>
+          <span class="preco-destaque">R$ 21.899,00</span><br>
+          (valor fixo, sem surpresas)
+        </div>
+        <div class="condicoes">
+          <b>Prazo:</b> 4 semanas (1 mês)<br>
+          <b>Forma de pagamento:</b> 40% na contratação, 60% na entrega<br>
+          <b>Inclui:</b> Todos os entregáveis, reuniões, apresentações executivas e suporte para dúvidas durante o Discovery.<br>
+          <b>Validade da proposta:</b> 30 dias
+        </div>
+        <div class="box-destaque">
+          Pronto para transformar seus processos financeiros? Fale com a LIT Digital Transformation e acelere sua jornada de automação!
+        </div>
+      </section>
+    </main>
+  </div>
+  <div class="footer">
+    © 2024 LIT Digital Transformation. Proposta confidencial e exclusiva para fins de avaliação.
+  </div>
+</body>
+</html> 
